@@ -28,36 +28,31 @@ const timer = (deadline) => {
     let getTime = getTimeRemaining();
 
     // передаем значения на страницу
-    if (getTime.hours < 10) {
-      timerHours.textContent = "0" + getTime.hours;
-    } else {
-      timerHours.textContent = getTime.hours;
-    }
+    const changeTime = (arg) => {
+      if (arg < 10) {
+        return "0" + arg;
+      } else {
+        return arg;
+      }
+    };
 
-    if (getTime.minutes < 10) {
-      timerMinutes.textContent = "0" + getTime.minutes;
-    } else {
-      timerMinutes.textContent = getTime.minutes;
-    }
-
-    if (getTime.seconds < 10) {
-      timerSeconds.textContent = "0" + getTime.seconds;
-    } else {
-      timerSeconds.textContent = getTime.seconds;
-    }
+    timerHours.textContent = changeTime(getTime.hours);
+    timerMinutes.textContent = changeTime(getTime.minutes);
+    timerSeconds.textContent = changeTime(getTime.seconds);
 
     // вызов функции только при положительном значении
     // if (getTime.timeRemaining > 0) {
-    //   setInterval(updateClock, 1000);
+    //   setTimeout(updateClock, 1000);
     // }
 
     if (getTime.timeRemaining <= 0) {
+      clearInterval(idInterval);
       timerHours.textContent = "00";
       timerMinutes.textContent = "00";
       timerSeconds.textContent = "00";
     }
   };
-  setInterval(updateClock, 1000);
+  let idInterval = setInterval(updateClock, 1000);
 };
 
 export default timer;
