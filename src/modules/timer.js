@@ -52,6 +52,7 @@ const timer = (deadline) => {
       timerSeconds.textContent = "00";
     }
   };
+  updateClock();
   let idInterval = setInterval(updateClock, 1000);
 };
 
