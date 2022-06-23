@@ -2,7 +2,6 @@ const scroll = () => {
   const scrollBtn = document.querySelector("main > a");
   const menuItem = document.querySelectorAll("menu>ul>li>a");
   const scrollArr = [...menuItem, scrollBtn];
-  console.log(scrollArr);
 
   scrollArr.forEach((link) => {
     link.addEventListener("click", (event) => {

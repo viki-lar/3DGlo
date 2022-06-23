@@ -45,15 +45,16 @@ const timer = (deadline) => {
     //   setTimeout(updateClock, 1000);
     // }
 
+    let idInterval = setInterval(updateClock, 1000);
+
     if (getTime.timeRemaining <= 0) {
-      clearInterval(idInterval);
       timerHours.textContent = "00";
       timerMinutes.textContent = "00";
       timerSeconds.textContent = "00";
+      clearInterval(idInterval);
     }
   };
   updateClock();
-  let idInterval = setInterval(updateClock, 1000);
 };
 
 export default timer;
