@@ -6,11 +6,6 @@ const validate = () => {
   const email = document.querySelectorAll("input[name = user_email]");
   const phone = document.querySelectorAll("input[name = user_phone]");
 
-  console.log(userName);
-  console.log(email);
-  console.log(phone);
-  console.log(message);
-
   //проверка калькулятора
   calcItem.forEach((item) => {
     item.addEventListener("input", (e) => {

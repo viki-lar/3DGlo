@@ -34,12 +34,16 @@ const modal = () => {
     });
   });
 
-  //закрытие окна при нажатии на кнопку закрыть
-  modalCloseBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+  //закрытие модального окна по клику мимо и при нажатии на кнопку закрыть
 
-  //анимация
+  modal.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".popup-content") ||
+      e.target.classList.contains("popup-close")
+    ) {
+      modal.style.display = "none";
+    }
+  });
 };
 
 export default modal;
