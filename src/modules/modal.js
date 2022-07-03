@@ -1,3 +1,5 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modalBtn = document.querySelectorAll(".popup-btn");
   const modal = document.querySelector(".popup");
@@ -17,19 +19,33 @@ const modal = () => {
         modal.style.display = "block";
       } else {
         // анимация
-        const open = () => {
-          modal.style.display = "block";
-          reqestId = requestAnimationFrame(open);
-          modalWindow.style.top = "0 px";
 
-          if (count < 200) {
-            count += +5;
-            modalWindow.style.top = count + "px";
-          } else {
-            cancelAnimationFrame(reqestId);
-          }
-        };
-        open();
+        setTimeout(() => {
+          modal.style.display = "block";
+          animate({
+            duration: 1000,
+            timing(timeFraction) {
+              return Math.pow(timeFraction, 2);
+            },
+            draw(progress) {
+              modalWindow.style.top = progress * 200 + "px";
+            },
+          });
+        }, 1000);
+
+        // const open = () => {
+        //   modal.style.display = "block";
+        //   reqestId = requestAnimationFrame(open);
+        //   modalWindow.style.top = "0 px";
+
+        //   if (count < 200) {
+        //     count += +5;
+        //     modalWindow.style.top = count + "px";
+        //   } else {
+        //     cancelAnimationFrame(reqestId);
+        //   }
+        // };
+        // open();
       }
     });
   });
