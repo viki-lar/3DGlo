@@ -6,7 +6,6 @@ const modal = () => {
   const modalCloseBtn = modal.querySelector(".popup-close");
 
   const modalWindow = document.querySelector(".popup-content");
-  let reqestId;
 
   //вызов модульного окна при нажатии на кнопку
 

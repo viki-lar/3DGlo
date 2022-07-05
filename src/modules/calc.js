@@ -8,6 +8,7 @@ const calc = (price = 100) => {
   const calcDay = document.querySelector(".calc-day");
   const total = document.getElementById("total");
   let reqestId;
+  let count = 0;
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -34,23 +35,36 @@ const calc = (price = 100) => {
 
       // анимация
 
-      setTimeout(() => {
-        animate({
-          duration: 1000,
-          timing(timeFraction) {
-            return timeFraction;
-          },
-          draw(progress) {
-            total.textContent = (totalValue * Math.trunc(progress * 10)) / 10;
-          },
-        });
-      }, 1000);
+      const changeTotal = () => {
+        reqestId = requestAnimationFrame(changeTotal);
+
+        if (count < totalValue) {
+          count += +5;
+          total.textContent = count;
+        } else {
+          count = 0;
+          cancelAnimationFrame(reqestId);
+        }
+      };
+      changeTotal();
+
+      //   setTimeout(() => {
+      //     animate({
+      //       duration: 1000,
+      //       timing(timeFraction) {
+      //         return timeFraction;
+      //       },
+      //       draw(progress) {
+      //         total.textContent = (totalValue * Math.trunc(progress * 10)) / 10;
+      //       },
+      //     });
+      //   }, 1000);
     } else {
       totalValue = 0;
     }
 
     //вывод итога
-    // total.textContent = totalValue;
+    total.textContent = totalValue;
   };
 
   calcBlock.addEventListener("input", (e) => {
