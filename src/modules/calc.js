@@ -35,30 +35,17 @@ const calc = (price = 100) => {
 
       // анимация
 
-      const changeTotal = () => {
-        reqestId = requestAnimationFrame(changeTotal);
-
-        if (count < totalValue) {
-          count += +5;
-          total.textContent = count;
-        } else {
-          count = 0;
-          cancelAnimationFrame(reqestId);
-        }
-      };
-      changeTotal();
-
-      //   setTimeout(() => {
-      //     animate({
-      //       duration: 1000,
-      //       timing(timeFraction) {
-      //         return timeFraction;
-      //       },
-      //       draw(progress) {
-      //         total.textContent = (totalValue * Math.trunc(progress * 10)) / 10;
-      //       },
-      //     });
-      //   }, 1000);
+      animate({
+        duration: 500,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          total.textContent = Math.trunc(
+            (totalValue * Math.trunc(progress * 10)) / 10
+          );
+        },
+      });
     } else {
       totalValue = 0;
     }
