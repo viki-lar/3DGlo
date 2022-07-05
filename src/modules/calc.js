@@ -39,7 +39,7 @@ const calc = (price = 100) => {
         reqestId = requestAnimationFrame(changeTotal);
 
         if (count < totalValue) {
-          count += +5;
+          count += +30;
           total.textContent = count;
         } else {
           count = 0;
@@ -47,18 +47,6 @@ const calc = (price = 100) => {
         }
       };
       changeTotal();
-
-      //   setTimeout(() => {
-      //     animate({
-      //       duration: 1000,
-      //       timing(timeFraction) {
-      //         return timeFraction;
-      //       },
-      //       draw(progress) {
-      //         total.textContent = (totalValue * Math.trunc(progress * 10)) / 10;
-      //       },
-      //     });
-      //   }, 1000);
     } else {
       totalValue = 0;
     }
