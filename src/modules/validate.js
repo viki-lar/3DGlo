@@ -13,33 +13,34 @@ const validate = () => {
     });
   });
 
-  // проверка модальных окон
+  // // проверка модальных окон
 
-  //проверка ввода текста
-  userName.forEach((name) => {
-    name.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
-    });
-  });
+  // //проверка ввода текста
+  // userName.forEach((name) => {
+  //   name.addEventListener("input", (e) => {
+  //     e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
+  //   });
+  // });
 
-  message.forEach((item) => {
-    item.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
-    });
-  });
+  // message.forEach((item) => {
+  //   item.addEventListener("input", (e) => {
+  //     e.target.value = e.target.value.replace(/[^а-я -]/gi, "");
+  //   });
+  // });
 
-  //проверка ввода email
-  email.forEach((item) => {
-    item.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^\w@-_.!~*]/gi, "");
-    });
-  });
+  // //проверка ввода email
+  // email.forEach((item) => {
+  //   item.addEventListener("input", (e) => {
+  //     e.target.value = e.target.value.replace(/[^\w@-_.!~*]/gi, "");
+  //   });
+  // });
 
-  //проверка ввода телефона
-  phone.forEach((item) => {
-    item.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^()-\d]/g, "");
-    });
-  });
+  // //проверка ввода телефона
+  // phone.forEach((item) => {
+  //   item.addEventListener("input", (e) => {
+  //     e.target.value = e.target.value.replace(/[^()-\d]/g, "");
+  //   });
+  // });
 };
 export default validate;
+export { validate };
