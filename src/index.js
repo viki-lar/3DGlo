@@ -14,5 +14,5 @@ modal();
 scroll();
 validate();
 tabs();
-slider();
+slider(".portfolio-content", ".portfolio-item");
 calc();
