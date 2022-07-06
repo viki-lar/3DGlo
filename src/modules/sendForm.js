@@ -1,5 +1,3 @@
-import { validate } from "./validate.js";
-
 const sendForm = ({ formId, someElem = [] }) => {
   const form = document.getElementById(formId);
   const statusBlock = document.createElement("div");
@@ -9,12 +7,44 @@ const sendForm = ({ formId, someElem = [] }) => {
 
   const validate = (list) => {
     let success = true;
-    list.forEach((input) => {
-      // if (!input.classList.contains("success")) {
-      //   success = false;
-      // }
-    });
 
+    list.forEach((input) => {
+      // проверка на пустой ввод
+      if (!input.value) {
+        success = false;
+      } else {
+        // проверка имени
+        if (input.name === "user_name") {
+          if (/[^а-я -]/gi.test(input.value)) {
+            success = false;
+            alert("Введите имя на кириллице");
+            input.style.border = "2px solid red";
+          }
+          //  проверка e-mail
+        } else if (input.name === "user_email") {
+          if (/[^\w@-_.!~*]/gi.test(input.value)) {
+            success = false;
+            alert("Введите e-mail");
+            input.style.border = "2px solid red";
+          }
+          // проверка телефона
+        } else if (input.name === "user_phone") {
+          if (/[^()-\d]/g.test(input.value)) {
+            success = false;
+            alert("Введите телефон");
+            input.style.border = "2px solid red";
+            // проверка сообщения
+          } else if (input.name === "user_message") {
+            if (/[^а-я -]/gi.test(input.value)) {
+              success = false;
+              alert("Введите сообщение");
+              input.style.border = "2px solid red";
+            }
+          }
+        }
+      }
+    });
+    console.log(success);
     return success;
   };
 
@@ -71,7 +101,7 @@ const sendForm = ({ formId, someElem = [] }) => {
           statusBlock.textContent = errorText;
         });
     } else {
-      alert("lfyyst не валидны");
+      alert("Данные не отправлены");
     }
   };
 

@@ -43,4 +43,3 @@ const validate = () => {
   // });
 };
 export default validate;
-export { validate };
