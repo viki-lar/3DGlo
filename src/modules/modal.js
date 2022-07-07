@@ -20,18 +20,16 @@ const modal = () => {
       } else {
         // анимация
 
-        setTimeout(() => {
-          modal.style.display = "block";
-          animate({
-            duration: 1000,
-            timing(timeFraction) {
-              return Math.pow(timeFraction, 2);
-            },
-            draw(progress) {
-              modalWindow.style.top = progress * 200 + "px";
-            },
-          });
-        }, 1000);
+        modal.style.display = "block";
+        animate({
+          duration: 1000,
+          timing(timeFraction) {
+            return Math.pow(timeFraction, 2);
+          },
+          draw(progress) {
+            modalWindow.style.top = progress * 200 + "px";
+          },
+        });
 
         // const open = () => {
         //   modal.style.display = "block";

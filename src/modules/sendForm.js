@@ -5,6 +5,19 @@ const sendForm = ({ formId, someElem = [] }) => {
   const errorText = "Ошибка ...";
   const successText = "Спасибо! Наш менеджер свяжется с Вами";
 
+  const userMessage = (input, message) => {
+    // создание элементов
+    const newDiv = document.createElement("div");
+    newDiv.style.cssText = `color:red; font-size:12px`;
+    newDiv.textContent = message;
+    input.after(newDiv);
+  };
+
+  const deleteMessage = (input) => {
+    newDiv.remove();
+  };
+
+  // валидация
   const validate = (list) => {
     let success = true;
 
@@ -17,27 +30,28 @@ const sendForm = ({ formId, someElem = [] }) => {
         if (input.name === "user_name") {
           if (/[^а-я -]/gi.test(input.value)) {
             success = false;
-            alert("Введите имя на кириллице");
+            userMessage(input, "Введите сообщение на кириллице");
             input.style.border = "2px solid red";
           }
+
           //  проверка e-mail
         } else if (input.name === "user_email") {
           if (/[^\w@-_.!~*]/gi.test(input.value)) {
             success = false;
-            alert("Введите e-mail");
+            userMessage(input, "Введите e-mail");
             input.style.border = "2px solid red";
           }
           // проверка телефона
         } else if (input.name === "user_phone") {
           if (/[^()-\d]/g.test(input.value)) {
             success = false;
-            alert("Введите телефон");
+            userMessage(input, "Введите телефон");
             input.style.border = "2px solid red";
             // проверка сообщения
           } else if (input.name === "user_message") {
             if (/[^а-я -]/gi.test(input.value)) {
               success = false;
-              alert("Введите сообщение");
+              userMessage(input, "Введите сообщение на кириллице");
               input.style.border = "2px solid red";
             }
           }
@@ -65,9 +79,6 @@ const sendForm = ({ formId, someElem = [] }) => {
     const formData = new FormData(form);
     const formBody = {};
     const formElements = form.querySelectorAll("input");
-    // вывод сообщения о загрузке данных
-    statusBlock.textContent = loadText;
-    form.append(statusBlock);
 
     formData.forEach((val, key) => {
       formBody[key] = val;
@@ -86,6 +97,9 @@ const sendForm = ({ formId, someElem = [] }) => {
 
     // проверка на валидация форм
     if (validate(formElements)) {
+      // вывод сообщения о загрузке данных
+      statusBlock.textContent = loadText;
+      form.append(statusBlock);
       // отправка данных
       sendData(formBody)
         .then((data) => {
