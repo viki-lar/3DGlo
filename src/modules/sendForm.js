@@ -8,13 +8,17 @@ const sendForm = ({ formId, someElem = [] }) => {
   const userMessage = (input, message) => {
     // создание элементов
     const newDiv = document.createElement("div");
+    newDiv.classList.add("eror");
     newDiv.style.cssText = `color:red; font-size:12px`;
     newDiv.textContent = message;
     input.after(newDiv);
   };
 
-  const deleteMessage = (input) => {
-    newDiv.remove();
+  const deleteMessage = () => {
+    const newDiv = document.querySelectorAll(".eror");
+    newDiv.forEach((elem) => {
+      elem.textContent = "";
+    });
   };
 
   // валидация
@@ -99,6 +103,8 @@ const sendForm = ({ formId, someElem = [] }) => {
     if (validate(formElements)) {
       // вывод сообщения о загрузке данных
       statusBlock.textContent = loadText;
+      deleteMessage();
+
       form.append(statusBlock);
       // отправка данных
       sendData(formBody)
@@ -108,6 +114,7 @@ const sendForm = ({ formId, someElem = [] }) => {
           // очистка полей ввода
           formElements.forEach((input) => {
             input.value = "";
+            input.style.border = "none";
           });
         })
         //вывод ошибки
