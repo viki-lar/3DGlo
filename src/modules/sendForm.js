@@ -8,48 +8,11 @@ const sendForm = ({ formId, someElem = [] }) => {
   const successText = "Спасибо! Наш менеджер свяжется с Вами";
 
   // // // валидация
-  // const validateForm = (list) => {
-  //   let success = true;
+  const validateForm = (list) => {
+    let success = true;
 
-  //   list.forEach((input) => {
-  //     // проверка на пустой ввод
-  //     if (!input.value) {
-  //       success = false;
-  //       deleteMessage();
-  //     } else {
-  //       // проверка имени
-  //       if (input.name === "user_name") {
-  //         if (/[^а-я -]/gi.test(input.value)) {
-  //           success = false;
-  //           userMessage(input, "Введите имя на кириллице");
-  //         }
-
-  //         //  проверка e-mail
-  //       } else if (input.name === "user_email") {
-  //         if (/[^\w@-_.!~*]/gi.test(input.value)) {
-  //           success = false;
-  //           userMessage(input, "Введите e-mail");
-  //         }
-  //         // проверка телефона
-  //       } else if (input.name === "user_phone") {
-  //         if (/[^()-\d]/g.test(input.value)) {
-  //           success = false;
-
-  //           userMessage(input, "Введите телефон");
-
-  //           // проверка сообщения
-  //         } else if (input.name === "user_message") {
-  //           if (/[^а-я -]/gi.test(input.value)) {
-  //             success = false;
-  //             userMessage(input, "Введите сообщение на кириллице");
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-  //   console.log(success);
-  //   return success;
-  // };
+    return success;
+  };
 
   // создание post запроса
 
@@ -86,26 +49,25 @@ const sendForm = ({ formId, someElem = [] }) => {
 
     // проверка на валидация форм
     if (validateForm(form)) {
-      console.log("hj");
       // вывод сообщения о загрузке данных
-      // statusBlock.textContent = loadText;
+      statusBlock.textContent = loadText;
 
-      // form.append(statusBlock);
-      // // отправка данных
-      // sendData(formBody)
-      //   .then((data) => {
-      //     // вывод сообщения об успешной отправке
-      //     statusBlock.textContent = successText;
-      //     // очистка полей ввода
-      //     formElements.forEach((input) => {
-      //       input.value = "";
-      //       input.style.border = "none";
-      //     });
-      //   })
-      //   //вывод ошибки
-      //   .catch((error) => {
-      //     statusBlock.textContent = errorText;
-      //   });
+      form.append(statusBlock);
+      // отправка данных
+      sendData(formBody)
+        .then((data) => {
+          // вывод сообщения об успешной отправке
+          statusBlock.textContent = successText;
+          // очистка полей ввода
+          formElements.forEach((input) => {
+            input.value = "";
+            input.style.border = "none";
+          });
+        })
+        //вывод ошибки
+        .catch((error) => {
+          statusBlock.textContent = errorText;
+        });
     } else {
       // alert("Данные не отправлены");
     }
