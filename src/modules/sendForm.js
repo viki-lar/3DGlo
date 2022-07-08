@@ -50,6 +50,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     // проверка на валидация форм
     if (validateForm(form)) {
       // вывод сообщения о загрузке данных
+      statusBlock.style.cssText = `color:white `;
       statusBlock.textContent = loadText;
 
       form.append(statusBlock);
