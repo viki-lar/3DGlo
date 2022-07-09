@@ -27,7 +27,9 @@ const modal = () => {
             return Math.pow(timeFraction, 2);
           },
           draw(progress) {
-            modalWindow.style.top = progress * 150 + "px";
+            const windowInnerHeight = document.documentElement.clientHeight;
+            modalWindow.style.top =
+              progress * (windowInnerHeight / 2 - 200) + "px";
           },
         });
 
