@@ -27,7 +27,7 @@ const modal = () => {
             return Math.pow(timeFraction, 2);
           },
           draw(progress) {
-            modalWindow.style.top = progress * 200 + "px";
+            modalWindow.style.top = progress * 150 + "px";
           },
         });
 
